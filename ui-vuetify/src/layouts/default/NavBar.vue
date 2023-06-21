@@ -21,7 +21,7 @@
             class="search-input"
             placeholder="Search"
           >
-            <v-icon aria-hidden="false" size="large">
+            <v-icon aria-hidden="false" size="large" @click="searchProducts">
               mdi-magnify
             </v-icon>
           </v-text-field>
@@ -46,7 +46,17 @@
 </template>
 
 <script lang="ts" setup>
-  //
+  import { ref, onMounted } from 'vue';
+  import { useProductsStore } from '@/store/products'
+  
+  const searchTerm = ref('')
+  onMounted(async ()=> {
+    await useProductsStore().queryProducts('tacos')
+  })
+
+  const searchProducts = async () => {
+    alert('not implemented')
+  }  
 </script>
 
 <style scoped>
