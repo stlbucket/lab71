@@ -1,5 +1,5 @@
 <template>
-  <div class="products-display">
+  <div class="products-display p-20">
     <v-icon
       start
       icon="mdi-chevron-left"

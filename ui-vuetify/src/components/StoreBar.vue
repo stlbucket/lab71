@@ -1,24 +1,20 @@
 <template>
-  <v-app-bar flat>
-    <v-app-bar-title>
-      <div class="nav">
-        <div class="menus text-xl">
-          <div>Shop All</div>
-          <div>Trending</div>
-          <div>T-Shirts</div>
-          <div>Sweatshirts</div>
-          <div>Bottoms</div>
-          <div>Polos</div>
-          <div>Outerwear</div>
-          <div>Accessories</div>
-          <div>Decorating Supplies</div>
-          <div>Women</div>
-          <div>Men & Unisex</div>
-          <div>Kids</div>
-        </div>
-      </div>
-    </v-app-bar-title>
-  </v-app-bar>
+  <div class="nav">
+    <div class="menus text-xl">
+      <div>Shop All</div>
+      <div>Trending</div>
+      <div>T-Shirts</div>
+      <div>Sweatshirts</div>
+      <div>Bottoms</div>
+      <div>Polos</div>
+      <div>Outerwear</div>
+      <div>Accessories</div>
+      <div>Decorating Supplies</div>
+      <div>Women</div>
+      <div>Men & Unisex</div>
+      <div>Kids</div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts" setup>

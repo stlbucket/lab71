@@ -1,11 +1,7 @@
 <template>
-  <v-app-bar flat>
-    <v-app-bar-title>
-      <div class="shipping">
-        Free expedited shipping on orders over $79. Plus bulk discounts over $250.
-      </div>
-    </v-app-bar-title>
-  </v-app-bar>
+  <div class="shipping text-3xl p-3">
+    Free expedited shipping on orders over $79. Plus bulk discounts over $250.
+  </div>
 </template>
 
 <script lang="ts" setup>
