@@ -11,6 +11,12 @@ async function doQuery (options) {
     .sort((a,b) => a.name < b.name ? -1 : 1)
     .slice((pageOffset*pageSize), (pageOffset*pageSize)+pageSize)
     
-  return result
+  return {
+    products: result,
+    totalPages: totalPages,
+    pageOffset: pageOffset,
+    pageSize: pageSize,
+    searchTerm: searchTerm
+  }
 }
 module.exports = doQuery

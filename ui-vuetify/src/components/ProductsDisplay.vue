@@ -4,7 +4,7 @@
       start
       icon="mdi-chevron-left"
       size="x-large"
-      @click="lastPage"
+      @click="previousPage"
     ></v-icon>
     <div v-for="p in products" class="product">
       <div>
@@ -30,12 +30,13 @@
 <style scoped>
 .products-display {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 .product {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 </style>
 
@@ -45,12 +46,11 @@
   import { computed } from 'vue';
   const store = useProductsStore()
   const { products } = storeToRefs(store)
-  console.log(store)
 
-  const lastPage = async () => {
-    alert('not implemented')
+  const previousPage = async () => {
+    await store.previousProductPage()
   }
   const nextPage = async () => {
-    alert('not implemented')
+    await store.nextProductPage()
   }
 </script>

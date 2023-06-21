@@ -13,14 +13,19 @@ export interface SearchProductsOptions {
 
 export const useProductsStore = defineStore('products', () => {
   const products: Ref<any[]> = ref([])
+  const currentSearchTerm = ref()
+  const currentPageOffset = ref(0)
+  const currentTotalPages = ref(0)
 
-  const queryProducts = async (options: SearchProductsOptions) => {
+  const queryProducts = async () => {
+    const options = {
+      searchTerm: currentSearchTerm.value,
+      pageOffset: currentPageOffset.value
+    }
     try {
       let url = functionURL
       const params = []
       for (const [k, v] of Object.entries(options)) {
-        console.log(k, v)
-        // console.log(k, v)
         params.push(`${k}=${v}`)
       }
       if (params.length > 0) {
@@ -29,11 +34,38 @@ export const useProductsStore = defineStore('products', () => {
 
       const request = new Request(url);
       const response = await fetch(request)
-      products.value = (await response.json()).data.slice(0,3)
+      const data = (await response.json()).data
+
+      products.value = data.products.slice(0,3)
+      currentPageOffset.value = data.pageOffset
+      currentTotalPages.value = data.totalPages
     } catch (e:any) {
       alert(e.message)
     }
   }
 
-  return { products, queryProducts }
+  const searchProducts = async (searchTerm: string) => {
+    currentSearchTerm.value = searchTerm
+    await queryProducts()
+  }
+
+  const nextProductPage = async () => {
+    if (currentPageOffset.value < currentTotalPages.value-1) {
+      currentPageOffset.value = currentPageOffset.value + 1
+    } else {
+      currentPageOffset.value = 0
+    }
+    await queryProducts()
+  }
+
+  const previousProductPage = async () => {
+    if (currentPageOffset.value > 0) {
+      currentPageOffset.value = currentPageOffset.value - 1
+    } else {
+      currentPageOffset.value = currentTotalPages.value -1
+    }
+    await queryProducts()
+  }
+
+  return { products, searchProducts, nextProductPage, previousProductPage }
 })

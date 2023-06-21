@@ -21,6 +21,7 @@
             class="search-input"
             placeholder="Search"
             v-model="searchTerm"
+            @input="searchProducts"
           >
             <v-icon aria-hidden="false" size="large" @click="searchProducts" :disabled="searchTerm.length < 3">
               mdi-magnify
@@ -52,13 +53,11 @@
   
   const searchTerm = ref('')
   onMounted(async ()=> {
-    await useProductsStore().queryProducts({})
+    await useProductsStore().searchProducts(searchTerm.value)
   })
 
   const searchProducts = async () => {
-    await useProductsStore().queryProducts({
-      searchTerm: searchTerm.value
-    })
+    await useProductsStore().searchProducts(searchTerm.value)
   }  
 </script>
 

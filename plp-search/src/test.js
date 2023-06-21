@@ -2,7 +2,7 @@ const doQuery = require('./doQuery')
 
 async function runTest () {
   const result = doQuery({
-    // searchTerm: 'fff'
+    searchTerm: 'fff'
   })
   
   console.log(result)
