@@ -21,7 +21,6 @@
             class="search-input"
             placeholder="Search"
             v-model="searchTerm"
-            @input="searchProducts"
           >
             <v-icon aria-hidden="false" size="large" @click="searchProducts" :disabled="searchTerm.length < 3">
               mdi-magnify
