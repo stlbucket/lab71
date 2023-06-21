@@ -20,8 +20,9 @@
           <v-text-field
             class="search-input"
             placeholder="Search"
+            v-model="searchTerm"
           >
-            <v-icon aria-hidden="false" size="large" @click="searchProducts">
+            <v-icon aria-hidden="false" size="large" @click="searchProducts" :disabled="searchTerm.length < 3">
               mdi-magnify
             </v-icon>
           </v-text-field>
@@ -51,11 +52,13 @@
   
   const searchTerm = ref('')
   onMounted(async ()=> {
-    await useProductsStore().queryProducts('tacos')
+    await useProductsStore().queryProducts({})
   })
 
   const searchProducts = async () => {
-    alert('not implemented')
+    await useProductsStore().queryProducts({
+      searchTerm: searchTerm.value
+    })
   }  
 </script>
 
