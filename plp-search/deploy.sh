@@ -5,4 +5,5 @@ gcloud functions deploy plp-search \
 --source=. \
 --entry-point=plp-searchGET \
 --trigger-http \
---allow-unauthenticated
+--allow-unauthenticated \
+--project=fnb-lab-71
